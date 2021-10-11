@@ -19,7 +19,7 @@ def index(request):
 def updateHobby(request, pk):
     hobby = Hobby.objects.get(id=pk)
 
-    form = HobbyForm()
+    form = HobbyForm(instance=hobby)
     if request.method =="POST":
         form = HobbyForm(request.POST, instance=hobby)
         if form.is_valid():
@@ -28,3 +28,13 @@ def updateHobby(request, pk):
     
     context = {'form': form}
     return render(request, 'hobbies/update_hobby.html',context)
+
+def deleteHobby(request,pk):
+    hobby = Hobby.objects.get(id=pk)
+
+    if request.method == "POST":
+        hobby.delete()
+        return redirect("/")
+
+    context = {'hobby': hobby}
+    return render(request,'hobbies/delete.html', context)
