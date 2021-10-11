@@ -1,1 +1,48 @@
-<h1>Hello World</h1>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hobby Graveyard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+    #header{
+        background-color: #4D2D52;
+        color: #FFFFFF;
+        text-align:center;
+        font-size:300%;
+        margin: 0;
+        padding: 0;
+        
+    }
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #9A4C95;
+        color: #FFFFFF;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <h1 id="header">Hobby Graveyard</h1>
+    <form method = "POST" action = "/">
+        {% csrf_token %}
+        {{form.title}}
+        <input type = "submit" name="Add Hobby">
+    </form>
+    
+    {% for hobby in hobbies %}
+        <div>
+            <p>{{hobby}}</p>
+            <a href="{% url 'update_hobby' hobby.id %}">Update</a>
+        </div>
+    {% endfor %}
+</body>
+<footer>
+    <p>Made by Zainab Lawal</p>
+</footer>
+</html>
+
+
