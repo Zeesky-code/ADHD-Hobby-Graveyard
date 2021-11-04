@@ -3,6 +3,7 @@ from django.forms import ModelForm
 
 from .models import *
 
+
 class HobbyForm(forms.ModelForm):
     class Meta:
         model = Hobby
